@@ -1,0 +1,72 @@
+  
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Signup</title>
+{% endblock %}
+
+{% block content %}
+
+      <div class="max-w-md mx-auto my-24 bg-white px-5 py-10 rounded shadow-xl">
+        <div class="text-center mb-3">
+      <h2 class="text-center text-3xl font-bold text-gray-900 mb-5">
+        Register
+      </h2>
+		{% if form.errors %}
+		    {% for field in form %}
+		        {% for error in field.errors %}
+					<div class="text-red-700 px-6 py-2 border-0 rounded relative mb-2 bg-red-100 text-center">
+					  <span class="inline-block align-middle mr-8">
+					    {{ error|escape }}
+					  </span>
+					</div>
+		        {% endfor %}
+		    {% endfor %}
+		{% endif %}
+
+        </div>
+
+        <form method="post">
+        	{% csrf_token %}
+          <div class="mt-5">
+            <label for="username">Email</label>
+            <input
+              type="email"
+              id="username"
+              name="email"
+              required="true"
+              class="block w-full p-2 border rounded border-gray-500"
+            />
+          </div>
+          <div class="mt-5">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password1"
+              required="true"
+              class="block w-full p-2 border rounded border-gray-500"
+            />
+          </div>
+          <div class="mt-5">
+            <label for="password">Confirm Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password2"
+              required="true"
+              class="block w-full p-2 border rounded border-gray-500"
+            />
+          </div>
+          <div class="mt-10">
+            <input
+              type="submit"
+              value="Signup"
+              class="py-3 rounded text-white text-center w-full bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            />
+          </div>
+        </form>
+      </div>
+
+{% endblock %}

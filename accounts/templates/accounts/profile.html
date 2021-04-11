@@ -1,0 +1,41 @@
+  
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block content %}
+
+      <div class="max-w-md mx-auto my-24 bg-white px-5 py-10 rounded shadow-xl">
+        <div class="text-center mb-3">
+      <h2 class="text-center text-3xl font-bold text-gray-900 mb-5">
+        Profile
+      </h2>
+      <span>{{ user.email }}</span>
+        </div>
+
+        <form method="post">
+        	{% csrf_token %}
+		{% if has_two %}
+          <div class="mt-5 text-center">
+            <img class="mx-auto" src="{% url 'accounts:qrcode' %}"></img>
+          </div>
+		{% endif %}
+          <div class="mt-5 text-center">
+            <label class="inline-flex items-center mt-3">
+                <input type="checkbox" name="has_two" class="form-checkbox h-5 w-5 text-gray-600" {% if has_two %}checked{% endif %}><span class="ml-2 text-gray-700">Two Factor Authentication</span>
+            </label>
+          </div>
+          <div class="mt-10">
+            <input
+              type="submit"
+              value="Update"
+              class="py-3 rounded text-white text-center w-full bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            />
+          </div>
+
+        </form>
+      </div>
+{% endblock %}
